@@ -21,6 +21,7 @@
 
 ## 上线后待验证
 
+- [ ] 配置并验证 `privacy@chmodtool.com` 与 `support@chmodtool.com` 可以正常收信
 - [ ] `https://chmodtool.com` 与 HTTPS 证书可访问
 - [ ] 自定义域名只保留一个可索引版本，`www` 正确 301 到裸域
 - [ ] Search Console 域名验证通过并成功读取 sitemap

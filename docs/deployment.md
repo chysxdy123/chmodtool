@@ -1,5 +1,14 @@
 # Cloudflare Pages 部署
 
+## 当前状态
+
+- Pages 项目：`chmodtool`
+- 生产分支：`main`
+- Pages 地址：<https://chmodtool.pages.dev>
+- 首次部署：2026-07-29，通过 Wrangler 直接上传 `out/`
+- Git Provider：未连接；当前推送 GitHub 不会自动触发 Cloudflare 部署
+- 自定义域名：尚未绑定
+
 ## 构建配置
 
 - Framework preset：`Next.js (Static HTML Export)`
