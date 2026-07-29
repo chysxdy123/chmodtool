@@ -4,8 +4,80 @@
     "description": "Convert Unix file permissions between octal and symbolic notation."
   },
   "home": {
-    "title": "chmod calculator",
-    "description": "Convert Unix file permissions between octal and symbolic notation, then generate the corresponding chmod command."
+    "title": "chmod Calculator - Octal & Symbolic Permission Converter",
+    "h1": "chmod calculator",
+    "description": "Free online chmod calculator: convert Unix file permissions between octal and symbolic notation, then copy the exact chmod command. Includes 755, 644, 777, and 600 presets.",
+    "structuredDescription": "Convert Unix file permissions between octal and symbolic notation and generate the matching chmod command.",
+    "guide": {
+      "introduction": {
+        "title": "How to use this chmod calculator",
+        "paragraphs": [
+          "This chmod calculator converts Unix file permissions between the two notations Linux and macOS use interchangeably. Tick the boxes for owner, group, and other, or type an octal mode such as 755, and every representation updates at once: the three-digit octal value, the permission string like -rwxr-xr-x, and the chmod command you can paste straight into a terminal.",
+          "Everything runs in your browser. No filename, filesystem path, or permission value entered in the tool is sent to a server, so the calculator is safe to use while working on production systems."
+        ],
+        "presetParagraph": [
+          {
+            "text": "Start from one of the preset buttons if you already know roughly what you need. "
+          },
+          { "text": "755", "href": "/chmod-755" },
+          { "text": " and " },
+          { "text": "644", "href": "/chmod-644" },
+          { "text": " cover most web server files, " },
+          { "text": "600", "href": "/chmod-600" },
+          { "text": " covers private credentials, and " },
+          { "text": "777", "href": "/chmod-777" },
+          {
+            "text": " is included mainly so you can see why it is rarely the right answer."
+          }
+        ]
+      },
+      "notation": {
+        "title": "Octal and symbolic notation",
+        "paragraphs": [
+          "Unix permissions describe what three classes of user may do with a file: its owner, the members of its assigned group, and everyone else. Each class gets three bits - read, write, and execute - which gives nine bits in total.",
+          "Octal notation compresses each class into one digit by adding the values read (4), write (2), and execute (1). An owner digit of 7 is 4 + 2 + 1, meaning read, write, and execute. A digit of 5 is 4 + 1, meaning read and execute but no write. So 755 grants the owner full control while everyone else may read and execute.",
+          "Symbolic notation spells the same information out as characters. The string rwxr-xr-x reads in three groups of three, one per class, with a dash wherever a permission is absent. Directory listings show it with a leading character for the file type, which is why ls -l prints -rwxr-xr-x for a regular file and drwxr-xr-x for a directory.",
+          "Both notations work as arguments to chmod. This chmod calculator generates each form so you can use whichever your team's scripts and documentation prefer."
+        ]
+      },
+      "permissionMeaning": {
+        "title": "What read, write, and execute actually allow",
+        "paragraphs": [
+          "Read, write, and execute mean different things depending on whether the target is a file or a directory, and this difference causes most permission confusion.",
+          "On a file, read allows viewing its contents, write allows modifying them, and execute allows running the file as a program or script. On a directory, read allows listing the names inside it, write allows creating, renaming, and deleting entries, and execute allows traversing into it to reach the items it contains.",
+          "Because traversal needs the execute bit, directories that users must enter are normally 755 rather than 644. A directory set to 644 will show its contents in some tools but fail when anything tries to open a file inside it."
+        ]
+      },
+      "safeMode": {
+        "title": "Choosing a safe permission mode",
+        "paragraphs": [
+          "The working rule is to grant the least access that lets the task succeed. Files served over the web usually need to be readable, not writable, by the web server process. Private keys and credential files should be readable only by their owner. Scripts need the execute bit; documents and configuration files do not.",
+          "Permissions are only half the picture. When a process cannot reach a file, the correct fix is usually to change ownership or group membership with chown or chgrp, not to widen permissions for everyone. Setting a mode to 777 to make an error disappear leaves the file writable by any account on the system, including processes you did not intend to trust.",
+          "Be careful with recursive changes. chmod -R applies the same mode to files and directories alike, which either strips the execute bit that directories need or adds it to files that should not have it. Apply directory and file modes separately when you change a whole tree."
+        ]
+      },
+      "faq": {
+        "title": "chmod command FAQ",
+        "items": [
+          {
+            "question": "What does chmod 755 mean?",
+            "answer": "755 gives the owner read, write, and execute permission, and gives the group and all other users read and execute permission. The equivalent permission string is rwxr-xr-x. It is the usual choice for directories and executable scripts."
+          },
+          {
+            "question": "What is the difference between 755 and 644?",
+            "answer": "Both let other users read the item, but 755 adds the execute bit. Directories and programs need execute; ordinary files such as HTML, CSS, and configuration files do not, so they normally use 644."
+          },
+          {
+            "question": "Is chmod 777 safe?",
+            "answer": "No. 777 lets every account on the system read, write, and execute the file. It is almost never necessary, and it is a common source of security incidents on shared servers. Adjust ownership or group permissions instead."
+          },
+          {
+            "question": "Why does SSH reject my private key?",
+            "answer": "OpenSSH refuses to use a private key that other users can read, reporting that the permissions are too open. Set the key to 600 so that only its owner can read and write it."
+          }
+        ]
+      }
+    }
   },
   "tool": {
     "permissionKicker": "Permission bits",

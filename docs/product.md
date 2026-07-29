@@ -14,6 +14,7 @@
 - 每页支持独立 title、description、canonical 和 Open Graph
 - 提供 `sitemap.xml` 与 `robots.txt`
 - 保留 Google Analytics 和 Search Console 的构建时配置位
+- 已启用 Cloudflare Web Analytics 统计聚合流量和页面性能；GA4 暂不启用
 - 保留一个不加载广告脚本的空广告位
 - 默认权限为 `755`，九个权限勾选框、三位八进制数和十字符号模式实时双向联动
 - 在八进制输入下提供紧凑的 `755`、`644`、`600`、`777` 数字快捷按钮
@@ -22,3 +23,4 @@
 - 换算逻辑为不依赖 UI 的纯函数，便于抽离复用
 - 首版只支持 owner/group/other 的基础三位权限，不支持 setuid、setgid、sticky bit 等特殊位
 - 桌面端实时转换与权限选择左右并排，`800px` 以下恢复上下布局；输入框按三位数字和十字符号模式控制宽度
+- 首页工具与常见权限入口之后提供 chmod 基础说明、FAQ 和匹配的 JSON-LD 结构化数据

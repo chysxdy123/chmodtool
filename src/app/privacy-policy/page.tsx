@@ -20,9 +20,10 @@ export default function PrivacyPolicyPage() {
         </p>
         <h2>Analytics</h2>
         <p>
-          Google Analytics is not enabled until a measurement ID is configured.
-          If enabled later, Google may process usage and device information in
-          accordance with its privacy policy.
+          We use Cloudflare Web Analytics to understand aggregate site traffic
+          and page performance. Cloudflare states that Web Analytics does not
+          collect or use visitors&apos; personal data. Google Analytics is not
+          currently enabled.
         </p>
         <h2>Advertising</h2>
         <p>
