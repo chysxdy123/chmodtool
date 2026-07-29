@@ -1,25 +1,11 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
+import { siteConfig } from '@/lib/config';
 
-import { envConfigs } from '@/config';
+export const dynamic = 'force-static';
 
 export default function robots(): MetadataRoute.Robots {
-  const appUrl = envConfigs.app_url;
-
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: [
-        '/*?*q=',
-        '/privacy-policy',
-        '/terms-of-service',
-        '/settings/*',
-        '/activity/*',
-        '/admin/*',
-        '/api/*',
-      ],
-    },
-    sitemap: `${appUrl}/sitemap.xml`,
+    rules: [{ userAgent: '*', allow: '/' }],
+    sitemap: `${siteConfig.url}/sitemap.xml`,
   };
 }
-

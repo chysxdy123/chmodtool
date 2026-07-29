@@ -1,0 +1,38 @@
+import type { Metadata } from 'next';
+import { createPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = createPageMetadata({
+  title: 'Privacy Policy',
+  description: 'Privacy information for chmodtool.com.',
+  path: '/privacy-policy',
+});
+
+export default function PrivacyPolicyPage() {
+  return (
+    <main className="document-page">
+      <article className="shell prose">
+        <h1>Privacy Policy</h1>
+        <p>Last updated: July 29, 2026</p>
+        <h2>Calculator data</h2>
+        <p>
+          The chmod calculator runs in your browser. Permission values entered
+          into the tool are not sent to a chmodtool.com server.
+        </p>
+        <h2>Analytics</h2>
+        <p>
+          Google Analytics is not enabled until a measurement ID is configured.
+          If enabled later, Google may process usage and device information
+          under its own privacy terms.
+        </p>
+        <h2>Advertising</h2>
+        <p>
+          The current site contains an empty advertising placement and loads no
+          advertising script. This policy will be updated before advertising is
+          enabled.
+        </p>
+        <h2>Contact</h2>
+        <p>Privacy questions can be sent to privacy@chmodtool.com.</p>
+      </article>
+    </main>
+  );
+}

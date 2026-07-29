@@ -1,0 +1,14 @@
+{
+  "site": {
+    "name": "chmodtool.com",
+    "description": "Convert Unix file permissions between symbolic and numeric notation."
+  },
+  "home": {
+    "title": "chmod calculator",
+    "description": "Convert Unix file permissions between symbolic and numeric notation."
+  },
+  "footer": {
+    "privacy": "Privacy",
+    "terms": "Terms"
+  }
+}

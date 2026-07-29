@@ -50,11 +50,8 @@ data*
 *.db
 
 .open-next
-wrangler.toml
 .wrangler
-src/shared/types/cloudflare.d.ts
-
-src/config/db/migrations*
+.playwright-cli/
 
 .debug 
 .test
