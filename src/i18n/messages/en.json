@@ -1,11 +1,53 @@
 {
   "site": {
     "name": "chmodtool.com",
-    "description": "Convert Unix file permissions between symbolic and numeric notation."
+    "description": "Convert Unix file permissions between octal and symbolic notation."
   },
   "home": {
     "title": "chmod calculator",
-    "description": "Convert Unix file permissions between symbolic and numeric notation."
+    "description": "Convert Unix file permissions between octal and symbolic notation, then generate the corresponding chmod command."
+  },
+  "tool": {
+    "permissionKicker": "Permission bits",
+    "permissionTitle": "Choose permissions",
+    "presetsLabel": "Common modes",
+    "presets": ["755", "644", "600", "777"],
+    "parties": {
+      "owner": {
+        "label": "Owner",
+        "description": "The file or directory owner"
+      },
+      "group": {
+        "label": "Group",
+        "description": "Members of its assigned group"
+      },
+      "other": {
+        "label": "Other",
+        "description": "All other users"
+      }
+    },
+    "permissions": {
+      "read": "Read",
+      "write": "Write",
+      "execute": "Execute"
+    },
+    "notationKicker": "Live conversion",
+    "notationTitle": "Enter a permission mode",
+    "octalLabel": "Octal mode",
+    "octalHelp": "Use three digits, each from 0 to 7.",
+    "octalError": "Enter exactly three digits from 0 to 7.",
+    "symbolicLabel": "Permission string",
+    "symbolicError": "Use a permission string such as -rwxr-xr-x.",
+    "riskTitle": "Permission risk",
+    "riskFullyOpen": "777 grants read, write, and execute permissions to everyone. Avoid it unless this access is explicitly required.",
+    "riskOtherWritable": "Other users can write to this file or directory. Confirm that world-writable access is intentional.",
+    "commandKicker": "Ready to run",
+    "commandTitle": "chmod commands",
+    "numericCommandLabel": "Octal notation",
+    "symbolicCommandLabel": "Symbolic notation",
+    "copyButton": "Copy",
+    "copiedButton": "Copied",
+    "copyError": "Copy failed. Select the command and copy it manually."
   },
   "footer": {
     "privacy": "Privacy",

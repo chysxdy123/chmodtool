@@ -44,4 +44,4 @@ Pages 本地预览地址：<http://localhost:8788>
 
 ## 当前边界
 
-首页已有下一步可直接扩展的 `data-tool-root` 工具容器，但没有提前实现计算器交互。项目不包含登录、OAuth、注册、用户中心、后台、订阅、积分、支付、付费墙、数据库或 CMS。
+首页已实现权限复选框、八进制模式、权限字符串和 chmod 命令的实时双向联动。纯函数换算逻辑位于 `src/lib/chmod.ts`，浏览器端交互位于 `src/components/chmod-tool-shell.tsx`。项目不包含登录、OAuth、注册、用户中心、后台、订阅、积分、支付、付费墙、数据库或 CMS。

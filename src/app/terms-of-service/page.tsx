@@ -21,8 +21,9 @@ export default function TermsOfServicePage() {
         </p>
         <h2>Availability</h2>
         <p>
-          The site may change or become unavailable without notice. No guarantee
-          is made that every result is suitable for every operating environment.
+          The site may change or become unavailable without notice. We do not
+          guarantee that every result is suitable for every operating
+          environment.
         </p>
         <h2>Contact</h2>
         <p>Questions about these terms can be sent to support@chmodtool.com.</p>

@@ -21,13 +21,13 @@ export default function PrivacyPolicyPage() {
         <h2>Analytics</h2>
         <p>
           Google Analytics is not enabled until a measurement ID is configured.
-          If enabled later, Google may process usage and device information
-          under its own privacy terms.
+          If enabled later, Google may process usage and device information in
+          accordance with its privacy policy.
         </p>
         <h2>Advertising</h2>
         <p>
-          The current site contains an empty advertising placement and loads no
-          advertising script. This policy will be updated before advertising is
+          Advertising is not currently enabled, and this site does not load
+          advertising scripts. This policy will be updated before advertising is
           enabled.
         </p>
         <h2>Contact</h2>
