@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useId, useState } from 'react';
+import { CopyCommandButton } from '@/components/copy-command-button';
 import messages from '@/i18n/messages/en.json';
 import {
   getPermissionRisk,
@@ -15,39 +16,36 @@ import {
   type PermissionMatrix,
 } from '@/lib/chmod';
 
-function createDefaultPermissions(): PermissionMatrix {
-  const permissions = parseOctalMode('755');
+function createInitialPermissions(initialMode: string): PermissionMatrix {
+  const permissions = parseOctalMode(initialMode);
 
   if (!permissions) {
-    throw new Error('The default chmod mode must be valid.');
+    throw new Error(`The initial chmod mode "${initialMode}" must be valid.`);
   }
 
   return permissions;
 }
 
-const defaultPermissions = createDefaultPermissions();
-
 const partyLabels = messages.tool.parties;
 const permissionLabels = messages.tool.permissions;
 
-type CopyTarget = 'numeric' | 'symbolic';
+type ChmodToolShellProps = {
+  initialMode?: string;
+  variant?: 'full' | 'compact';
+};
 
-export function ChmodToolShell() {
-  const [permissions, setPermissions] =
-    useState<PermissionMatrix>(defaultPermissions);
-  const [octalInput, setOctalInput] = useState('755');
-  const [symbolicInput, setSymbolicInput] = useState('-rwxr-xr-x');
-  const [copiedTarget, setCopiedTarget] = useState<CopyTarget | null>(null);
-  const [copyFailed, setCopyFailed] = useState(false);
-  const copyResetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (copyResetTimer.current) {
-        clearTimeout(copyResetTimer.current);
-      }
-    };
-  }, []);
+export function ChmodToolShell({
+  initialMode = '755',
+  variant = 'full',
+}: ChmodToolShellProps) {
+  const idPrefix = useId().replaceAll(':', '');
+  const [permissions, setPermissions] = useState<PermissionMatrix>(() =>
+    createInitialPermissions(initialMode)
+  );
+  const [octalInput, setOctalInput] = useState(initialMode);
+  const [symbolicInput, setSymbolicInput] = useState(() =>
+    permissionsToSymbolic(createInitialPermissions(initialMode))
+  );
 
   const octal = permissionsToOctal(permissions);
   const symbolicExpression = permissionsToSymbolicExpression(permissions);
@@ -81,44 +79,32 @@ export function ChmodToolShell() {
     }
   }
 
-  async function copyCommand(command: string, target: CopyTarget) {
-    try {
-      await navigator.clipboard.writeText(command);
-      setCopiedTarget(target);
-      setCopyFailed(false);
-    } catch {
-      setCopiedTarget(null);
-      setCopyFailed(true);
-    }
-
-    if (copyResetTimer.current) {
-      clearTimeout(copyResetTimer.current);
-    }
-
-    copyResetTimer.current = setTimeout(() => {
-      setCopiedTarget(null);
-      setCopyFailed(false);
-    }, 2000);
-  }
-
   return (
     <section
       id="chmod-tool"
-      className="tool-shell"
+      className={`tool-shell ${variant === 'compact' ? 'compact-tool' : ''}`}
       aria-label="chmod calculator"
       data-tool-root
     >
       <div className="calculator-flow">
-        <section className="notation-editor" aria-labelledby="notation-title">
+        <section
+          className="notation-editor"
+          aria-labelledby={`${idPrefix}-notation-title`}
+        >
           <p className="section-kicker">{messages.tool.notationKicker}</p>
-          <h2 id="notation-title">{messages.tool.notationTitle}</h2>
+          <h2 id={`${idPrefix}-notation-title`}>
+            {messages.tool.notationTitle}
+          </h2>
 
           <div className="notation-workspace">
             <div className="octal-workspace">
-              <label className="notation-field" htmlFor="octal-mode">
+              <label
+                className="notation-field"
+                htmlFor={`${idPrefix}-octal-mode`}
+              >
                 <span>{messages.tool.octalLabel}</span>
                 <input
-                  id="octal-mode"
+                  id={`${idPrefix}-octal-mode`}
                   className="octal-input"
                   type="text"
                   inputMode="numeric"
@@ -129,60 +115,71 @@ export function ChmodToolShell() {
                   value={octalInput}
                   aria-invalid={!octalIsValid}
                   aria-describedby={
-                    octalIsValid ? 'octal-help' : 'octal-help octal-error'
+                    octalIsValid
+                      ? `${idPrefix}-octal-help`
+                      : `${idPrefix}-octal-help ${idPrefix}-octal-error`
                   }
                   onChange={(event) =>
                     handleOctalChange(event.currentTarget.value)
                   }
                 />
               </label>
-              <p id="octal-help" className="field-help">
+              <p id={`${idPrefix}-octal-help`} className="field-help">
                 {messages.tool.octalHelp}
               </p>
               {!octalIsValid && (
-                <p id="octal-error" className="field-error">
+                <p id={`${idPrefix}-octal-error`} className="field-error">
                   {messages.tool.octalError}
                 </p>
               )}
 
-              <div
-                className="preset-control"
-                role="group"
-                aria-labelledby="presets-label"
-              >
-                <span id="presets-label" className="control-label">
-                  {messages.tool.presetsLabel}
-                </span>
-                <div className="preset-list">
-                  {messages.tool.presets.map((preset) => (
-                    <button
-                      key={preset}
-                      type="button"
-                      className={[
-                        'preset-button',
-                        octal === preset ? 'active' : '',
-                        preset === '777' ? 'risky' : '',
-                      ]
-                        .filter(Boolean)
-                        .join(' ')}
-                      aria-pressed={octal === preset}
-                      onClick={() => {
-                        const nextPermissions = parseOctalMode(preset);
-                        if (nextPermissions) updatePermissions(nextPermissions);
-                      }}
-                    >
-                      {preset}
-                    </button>
-                  ))}
+              {variant === 'full' && (
+                <div
+                  className="preset-control"
+                  role="group"
+                  aria-labelledby={`${idPrefix}-presets-label`}
+                >
+                  <span
+                    id={`${idPrefix}-presets-label`}
+                    className="control-label"
+                  >
+                    {messages.tool.presetsLabel}
+                  </span>
+                  <div className="preset-list">
+                    {messages.tool.presets.map((preset) => (
+                      <button
+                        key={preset}
+                        type="button"
+                        className={[
+                          'preset-button',
+                          octal === preset ? 'active' : '',
+                          preset === '777' ? 'risky' : '',
+                        ]
+                          .filter(Boolean)
+                          .join(' ')}
+                        aria-pressed={octal === preset}
+                        onClick={() => {
+                          const nextPermissions = parseOctalMode(preset);
+                          if (nextPermissions)
+                            updatePermissions(nextPermissions);
+                        }}
+                      >
+                        {preset}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             <div className="symbolic-workspace">
-              <label className="notation-field" htmlFor="symbolic-mode">
+              <label
+                className="notation-field"
+                htmlFor={`${idPrefix}-symbolic-mode`}
+              >
                 <span>{messages.tool.symbolicLabel}</span>
                 <input
-                  id="symbolic-mode"
+                  id={`${idPrefix}-symbolic-mode`}
                   className="symbolic-input"
                   type="text"
                   autoComplete="off"
@@ -192,7 +189,7 @@ export function ChmodToolShell() {
                   value={symbolicInput}
                   aria-invalid={!symbolicIsValid}
                   aria-describedby={
-                    !symbolicIsValid ? 'symbolic-error' : undefined
+                    !symbolicIsValid ? `${idPrefix}-symbolic-error` : undefined
                   }
                   onChange={(event) =>
                     handleSymbolicChange(
@@ -202,7 +199,7 @@ export function ChmodToolShell() {
                 />
               </label>
               {!symbolicIsValid && (
-                <p id="symbolic-error" className="field-error">
+                <p id={`${idPrefix}-symbolic-error`} className="field-error">
                   {messages.tool.symbolicError}
                 </p>
               )}
@@ -212,10 +209,12 @@ export function ChmodToolShell() {
 
         <section
           className="permission-editor"
-          aria-labelledby="permissions-title"
+          aria-labelledby={`${idPrefix}-permissions-title`}
         >
           <p className="section-kicker">{messages.tool.permissionKicker}</p>
-          <h2 id="permissions-title">{messages.tool.permissionTitle}</h2>
+          <h2 id={`${idPrefix}-permissions-title`}>
+            {messages.tool.permissionTitle}
+          </h2>
 
           <div className="permission-groups">
             {permissionParties.map((party) => (
@@ -260,47 +259,41 @@ export function ChmodToolShell() {
         </div>
       )}
 
-      <section className="command-output" aria-labelledby="commands-title">
-        <div className="command-heading">
-          <p className="section-kicker">{messages.tool.commandKicker}</p>
-          <h2 id="commands-title">{messages.tool.commandTitle}</h2>
-        </div>
-        <div className="command-list">
-          <div className="command-row">
-            <div>
-              <span>{messages.tool.numericCommandLabel}</span>
-              <code>{numericCommand}</code>
-            </div>
-            <button
-              type="button"
-              className="copy-button"
-              onClick={() => copyCommand(numericCommand, 'numeric')}
-            >
-              {copiedTarget === 'numeric'
-                ? messages.tool.copiedButton
-                : messages.tool.copyButton}
-            </button>
+      {variant === 'full' && (
+        <section
+          className="command-output"
+          aria-labelledby={`${idPrefix}-commands-title`}
+        >
+          <div className="command-heading">
+            <p className="section-kicker">{messages.tool.commandKicker}</p>
+            <h2 id={`${idPrefix}-commands-title`}>
+              {messages.tool.commandTitle}
+            </h2>
           </div>
-          <div className="command-row">
-            <div>
-              <span>{messages.tool.symbolicCommandLabel}</span>
-              <code>{symbolicCommand}</code>
+          <div className="command-list">
+            <div className="command-row">
+              <div>
+                <span>{messages.tool.numericCommandLabel}</span>
+                <code>{numericCommand}</code>
+              </div>
+              <CopyCommandButton
+                command={numericCommand}
+                ariaLabel={`Copy ${numericCommand}`}
+              />
             </div>
-            <button
-              type="button"
-              className="copy-button"
-              onClick={() => copyCommand(symbolicCommand, 'symbolic')}
-            >
-              {copiedTarget === 'symbolic'
-                ? messages.tool.copiedButton
-                : messages.tool.copyButton}
-            </button>
+            <div className="command-row">
+              <div>
+                <span>{messages.tool.symbolicCommandLabel}</span>
+                <code>{symbolicCommand}</code>
+              </div>
+              <CopyCommandButton
+                command={symbolicCommand}
+                ariaLabel={`Copy ${symbolicCommand}`}
+              />
+            </div>
           </div>
-          <p className="copy-status" aria-live="polite">
-            {copyFailed ? messages.tool.copyError : ''}
-          </p>
-        </div>
-      </section>
+        </section>
+      )}
     </section>
   );
 }

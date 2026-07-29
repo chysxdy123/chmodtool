@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { AdSlot } from '@/components/ad-slot';
 import { ChmodToolShell } from '@/components/chmod-tool-shell';
+import { CommonPermissions } from '@/components/common-permissions';
 import messages from '@/i18n/messages/en.json';
 import { createPageMetadata } from '@/lib/seo';
 
@@ -20,6 +21,7 @@ export default function HomePage() {
           </div>
           <ChmodToolShell />
           <AdSlot name="home-after-tool" className="ad-slot" />
+          <CommonPermissions />
         </div>
       </section>
     </main>

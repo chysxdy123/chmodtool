@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { permissionGuides } from '@/content/chmod-permissions';
 import { siteConfig } from '@/lib/config';
 
 export const dynamic = 'force-static';
@@ -8,6 +9,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: `${siteConfig.url}/`, lastModified, priority: 1 },
+    ...permissionGuides.map(({ slug }) => ({
+      url: `${siteConfig.url}/${slug}`,
+      lastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
     { url: `${siteConfig.url}/privacy-policy`, lastModified, priority: 0.2 },
     { url: `${siteConfig.url}/terms-of-service`, lastModified, priority: 0.2 },
   ];
