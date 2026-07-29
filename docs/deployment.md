@@ -2,27 +2,30 @@
 
 ## 当前状态
 
-- Pages 项目：`chmodtool`
+- Pages 项目：`chmodtool-git`
+- GitHub 仓库：`chysxdy123/chmodtool`
 - 生产分支：`main`
-- Pages 地址：<https://chmodtool.pages.dev>
-- 首次部署：2026-07-29，通过 Wrangler 直接上传 `out/`
-- Git Provider：未连接；当前推送 GitHub 不会自动触发 Cloudflare 部署
+- Pages 地址：<https://chmodtool-git.pages.dev>
+- 首次部署：2026-07-29，从 GitHub 提交 `ec8360f` 构建成功
+- Git Provider：已连接；推送 `main` 会自动构建并部署
+- 旧项目：直接上传项目 `chmodtool` 暂时保留作为回退，不再作为主部署目标
 - 自定义域名：尚未绑定
 
 ## 构建配置
 
-- Framework preset：`Next.js (Static HTML Export)`
+- Framework preset：`None`
 - Production branch：`main`
 - Build command：`pnpm build`
 - Build output directory：`out`
 - Root directory：仓库根目录
 - Node.js version：`22`
+- pnpm version：`9.15.0`
 
 ## Cloudflare 后台步骤
 
 1. 将当前项目推送到一个私有 GitHub 仓库。ShipAny 许可证禁止公开发布模板源码。
 2. 在 Cloudflare 进入 `Workers & Pages`，创建 Pages 项目并连接该私有仓库。
-3. 选择 `Next.js (Static HTML Export)`，填入上面的构建命令和输出目录。
+3. Framework preset 保持 `None`，填入上面的构建命令和输出目录。
 4. 在 `Settings > Environment variables` 为 Production 和 Preview 配置：
    - `NEXT_PUBLIC_APP_URL=https://chmodtool.com`
    - `NEXT_PUBLIC_APP_NAME=chmodtool.com`
@@ -46,7 +49,11 @@ pnpm preview
 
 Wrangler 会从 `out/` 启动 Pages 本地服务，默认地址为 `http://localhost:8788`。
 
-## CLI 部署（可选）
+## 部署方式
+
+日常发布只需将通过验证的提交推送到 GitHub `main`，Cloudflare 会自动构建和部署。
+
+CLI 仅作为自动部署不可用时的手动回退：
 
 首次使用前需由项目负责人执行 Cloudflare 登录并确认账号：
 
@@ -55,4 +62,4 @@ pnpm exec wrangler login
 pnpm pages:deploy
 ```
 
-本项目不会自动执行登录或部署。
+手动部署需要 Cloudflare 登录授权，不应作为日常发布方式。

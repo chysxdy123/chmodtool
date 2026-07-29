@@ -25,11 +25,14 @@ Pages 本地预览地址：<http://localhost:8788>
 
 ## Cloudflare Pages
 
-- Framework preset：`Next.js (Static HTML Export)`
+- Pages project：`chmodtool-git`
+- Pages URL：<https://chmodtool-git.pages.dev>
+- Deployment：GitHub 自动部署，推送到 `main` 后触发
+- Framework preset：`None`，使用下面的显式构建设置
 - Build command：`pnpm build`
 - Build output directory：`out`
 - Root directory：仓库根目录
-- Node.js：`22`
+- Node.js / pnpm：`22` / `9.15.0`
 
 详细步骤见 [docs/deployment.md](docs/deployment.md)。
 
