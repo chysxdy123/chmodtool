@@ -14,7 +14,8 @@
 - 每页支持独立 title、description、canonical 和 Open Graph
 - 提供 `sitemap.xml` 与 `robots.txt`
 - 保留 Google Analytics 和 Search Console 的构建时配置位
-- 已启用 Cloudflare Web Analytics 统计聚合流量和页面性能；GA4 暂不启用
+- 已启用 Cloudflare Web Analytics 统计聚合流量和页面性能
+- GA4 只在访客明确同意后加载，首期用于页面浏览和复制命令事件
 - 保留一个不加载广告脚本的空广告位
 - 默认权限为 `755`，九个权限勾选框、三位八进制数和十字符号模式实时双向联动
 - 在八进制输入下提供紧凑的 `755`、`644`、`600`、`777` 数字快捷按钮

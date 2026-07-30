@@ -279,6 +279,7 @@ export function ChmodToolShell({
               <CopyCommandButton
                 command={numericCommand}
                 ariaLabel={`Copy ${numericCommand}`}
+                commandType="octal"
               />
             </div>
             <div className="command-row">
@@ -289,6 +290,7 @@ export function ChmodToolShell({
               <CopyCommandButton
                 command={symbolicCommand}
                 ariaLabel={`Copy ${symbolicCommand}`}
+                commandType="symbolic"
               />
             </div>
           </div>

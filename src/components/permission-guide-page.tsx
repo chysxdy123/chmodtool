@@ -81,6 +81,7 @@ export function PermissionGuidePage({ guide }: PermissionGuidePageProps) {
             <CopyCommandButton
               command={guide.command}
               ariaLabel={`Copy ${guide.command}`}
+              commandType="octal"
             />
           </div>
         </section>

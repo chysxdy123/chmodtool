@@ -2,17 +2,20 @@
 
 import { useEffect, useRef, useState } from 'react';
 import messages from '@/i18n/messages/en.json';
+import { trackCopyCommand, type CopyCommandType } from '@/lib/analytics';
 
 type CopyStatus = 'idle' | 'copied' | 'failed';
 
 type CopyCommandButtonProps = {
   command: string;
   ariaLabel: string;
+  commandType: CopyCommandType;
 };
 
 export function CopyCommandButton({
   command,
   ariaLabel,
+  commandType,
 }: CopyCommandButtonProps) {
   const [status, setStatus] = useState<CopyStatus>('idle');
   const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -27,6 +30,7 @@ export function CopyCommandButton({
     try {
       await navigator.clipboard.writeText(command);
       setStatus('copied');
+      trackCopyCommand(commandType);
     } catch {
       setStatus('failed');
     }

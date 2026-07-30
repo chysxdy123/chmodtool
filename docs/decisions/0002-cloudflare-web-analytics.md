@@ -2,6 +2,8 @@
 
 日期：2026-07-29
 
+状态：Cloudflare Web Analytics 方案继续保留；其中“暂不启用 GA4”的部分已被 [0003-consent-based-ga4.md](0003-consent-based-ga4.md) 取代。
+
 ## 背景
 
 网站需要验证自然搜索流量、热门页面和页面性能。GA4 能提供更细的事件和转化分析，但当前 MVP 没有广告、付费转化或复杂用户路径，也没有 Cookie 同意机制。

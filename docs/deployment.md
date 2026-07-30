@@ -9,7 +9,8 @@
 - 首次部署：2026-07-29，从 GitHub 提交 `ec8360f` 构建成功
 - Git Provider：已连接；推送 `main` 会自动构建并部署
 - 旧项目：直接上传项目 `chmodtool` 暂时保留作为回退，不再作为主部署目标
-- 自定义域名：尚未绑定
+- 自定义域名：`https://chmodtool.com` 已绑定并上线
+- GA4 数据流：已创建，Measurement ID 为 `G-LXX778W8KZ`；尚未写入 Cloudflare 环境变量
 
 ## 构建配置
 
@@ -30,7 +31,7 @@
    - `NEXT_PUBLIC_APP_URL=https://chmodtool.com`
    - `NEXT_PUBLIC_APP_NAME=chmodtool.com`
    - `NEXT_PUBLIC_DEFAULT_LOCALE=en`
-   - `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID`：暂留空，拿到 GA4 Measurement ID 后填写
+   - `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-LXX778W8KZ`：本地同意机制验证完成；获得上线确认后再为 Production 和 Preview 填写
    - `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`：暂留空，选择 Search Console HTML tag 验证时填写 content 值
 5. 触发一次部署，确认 `*.pages.dev` 预览地址可访问。
 6. 进入 Pages 项目的 `Custom domains`，添加 `chmodtool.com`。若域名 DNS 已托管在同一 Cloudflare 账号，按提示自动创建记录；否则按后台给出的目标添加 DNS 记录。
@@ -38,7 +39,7 @@
 8. 在 Google Search Console 创建 Domain property 时按提示添加 DNS TXT；若使用 URL-prefix property，则可使用上面的 HTML tag 环境变量。
 9. 验证 Search Console 后提交 `https://chmodtool.com/sitemap.xml`。
 
-环境变量是构建时配置。新增 GA 或 Search Console 值后需要重新部署，静态文件才会包含对应标签。
+环境变量是构建时配置。新增 GA 或 Search Console 值后需要重新部署，静态文件才会包含对应标签。GA4 即使已配置，也只会在访客明确接受分析后加载。
 
 ## 本地预览
 

@@ -38,7 +38,9 @@ export default function RootLayout({
         <NextIntlClientProvider locale={defaultLocale} messages={messages}>
           <SiteHeader />
           {children}
-          <SiteFooter />
+          <SiteFooter
+            showAnalyticsSettings={Boolean(siteConfig.googleAnalyticsId)}
+          />
         </NextIntlClientProvider>
         <GoogleAnalytics id={siteConfig.googleAnalyticsId} />
       </body>
