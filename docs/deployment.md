@@ -21,6 +21,7 @@
 - Root directory：仓库根目录
 - Node.js version：`22`
 - pnpm version：`9.15.0`
+- 线上构建配置以 Cloudflare Dashboard 为唯一来源；`wrangler.toml` 不设置 `pages_build_output_dir`，避免覆盖 Dashboard 中的构建环境变量
 
 ## Cloudflare 后台步骤
 
