@@ -61,7 +61,7 @@
 - [ ] `https://chmodtool.com` 与 HTTPS 证书可访问
 - [ ] 自定义域名只保留一个可索引版本，`www` 正确 301 到裸域
 - [ ] Search Console 域名验证通过并成功读取 sitemap
-- [ ] PEM 权限修复页在正式域名返回 200，canonical、FAQPage、复制功能和 390px 布局正常
+- [x] PEM 权限修复页在正式域名返回 200；canonical、FAQPage、修复器 400/700 切换和 390px 布局正常，控制台无错误
 - [ ] 在 Search Console 对 `/fix/pem-file-permissions` 请求编入索引
 - [ ] 在 GA4 中将 `copy_chmod_command` 标记为关键事件
 - [ ] 接入广告前升级为 Google 认证 CMP，并再次更新隐私政策
