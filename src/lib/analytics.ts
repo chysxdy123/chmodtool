@@ -7,6 +7,7 @@ export type CopyCommandType =
   | 'octal'
   | 'symbolic'
   | 'ssh-fix'
+  | 'pem-fix'
   | 'windows'
   | 'diagnostic';
 

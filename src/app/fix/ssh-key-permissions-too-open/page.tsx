@@ -210,7 +210,11 @@ export default function SshKeyPermissionsPage() {
             <p>
               Need to compare another mode? Use the{' '}
               <Link href="/">chmod calculator</Link> to convert any octal or
-              symbolic permission.
+              symbolic permission. Using a key downloaded from AWS? Follow the{' '}
+              <Link href="/fix/pem-file-permissions">
+                PEM file permissions guide
+              </Link>{' '}
+              for EC2-specific steps.
             </p>
           </section>
         </div>

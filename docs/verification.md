@@ -42,11 +42,26 @@
 
 - Lighthouse 应在无扩展或无痕窗口运行。普通 Chrome 窗口中的扩展可能向页面注入图片等元素，造成与网站源码无关的 SEO 误报。本次普通窗口首次得到 92 分，无痕窗口复测为 100 分，失败项确认来自扩展注入。
 
+## PEM 权限修复页本地验收（2026-07-31）
+
+- [x] `/fix/pem-file-permissions` 已生成静态页面，并加入首页 Common fixes、SSH 页互链和 sitemap；本地 sitemap 共包含 9 个可收录 URL
+- [x] title、description、H1、canonical 和 FAQPage JSON-LD 使用 PEM/AWS EC2 语境，主推 `chmod 400`
+- [x] PEM 修复器复用共享交互骨架，三种目标分别输出 `.pem=400`、目录 `700`、SSH config `600`
+- [x] AWS PEM 页包含 400 vs 600、Windows PowerShell `icacls` 完整步骤、WSL 提示和 EC2 四步排查顺序
+- [x] 9 项单元测试、全部 512 种三位权限往返验证、ESLint、本批文件 Prettier 检查和正式构建通过
+- [x] 1440px 桌面与 390px 移动端无整页横向溢出；390px 下无主内容越界，三个命令区的文字与复制按钮无重叠
+- [x] 正式静态构建中 Windows 四行命令可完整复制，内容逐字一致
+- [x] SSH 页回归通过：URL、title、H1、默认 600 命令和 `.ssh` 目录 700 切换保持不变
+- [x] PEM 与 SSH 两页正文逐段比对，无完全重复段落；两页浏览器控制台均无错误
+- [ ] 新页面 Lighthouse 移动端 SEO 复测（本机当前未安装 Lighthouse，本轮未联网安装）
+
 ## 上线后待验证
 
 - [ ] 配置并验证 `privacy@chmodtool.com` 与 `support@chmodtool.com` 可以正常收信
 - [ ] `https://chmodtool.com` 与 HTTPS 证书可访问
 - [ ] 自定义域名只保留一个可索引版本，`www` 正确 301 到裸域
 - [ ] Search Console 域名验证通过并成功读取 sitemap
+- [ ] PEM 权限修复页在正式域名返回 200，canonical、FAQPage、复制功能和 390px 布局正常
+- [ ] 在 Search Console 对 `/fix/pem-file-permissions` 请求编入索引
 - [ ] 在 GA4 中将 `copy_chmod_command` 标记为关键事件
 - [ ] 接入广告前升级为 Google 认证 CMP，并再次更新隐私政策

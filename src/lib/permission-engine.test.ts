@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
+import { pemPermissionTargets } from '../content/pem-permission-fixes.ts';
 import { sshPermissionTargets } from '../content/ssh-permission-fixes.ts';
 import {
   describePermission,
@@ -92,5 +93,17 @@ test('uses the expected SSH file and directory recommendations', () => {
     'known-hosts': '644',
     config: '600',
     'ssh-directory': '700',
+  });
+});
+
+test('uses the expected PEM key, directory, and config recommendations', () => {
+  const modes = Object.fromEntries(
+    pemPermissionTargets.map((target) => [target.id, target.octal])
+  );
+
+  assert.deepEqual(modes, {
+    'pem-private-key': '400',
+    'key-directory': '700',
+    'ssh-config': '600',
   });
 });

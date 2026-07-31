@@ -11,4 +11,9 @@ export const commonFixes: CommonFix[] = [
     summary:
       'Fix private key, authorized_keys, config, and .ssh directory modes.',
   },
+  {
+    slug: 'fix/pem-file-permissions',
+    title: 'PEM file permissions too open',
+    summary: 'Fix AWS EC2 .pem keys with chmod 400 or Windows icacls commands.',
+  },
 ];

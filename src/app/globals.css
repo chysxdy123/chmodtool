@@ -929,6 +929,113 @@ button {
   text-underline-offset: 3px;
 }
 
+.pem-explanation code,
+.pem-windows-fix code:not(.ssh-command-row code) {
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: var(--surface);
+}
+
+.pem-explanation a {
+  color: var(--primary-strong);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.pem-mode-comparison {
+  margin-top: 32px;
+}
+
+.pem-mode-comparison > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.pem-mode-comparison > div p {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 16px;
+  border-left: 3px solid var(--primary);
+  background: var(--surface);
+  font-size: 14px;
+}
+
+.pem-mode-comparison strong {
+  color: var(--primary-strong);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 24px;
+}
+
+.pem-windows-fix {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.pem-windows-fix .ssh-section-heading > p:last-child,
+.ssh-troubleshooting .ssh-section-heading > p:last-child,
+.pem-windows-fix > p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.pem-windows-command {
+  align-items: flex-start;
+}
+
+.pem-checklist {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  list-style: none;
+}
+
+.pem-checklist li {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.pem-checklist li > span {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid #7ab88c;
+  border-radius: 50%;
+  color: var(--primary-strong);
+  font-weight: 750;
+}
+
+.pem-checklist h3 {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.pem-checklist p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.pem-connect-command {
+  max-width: 720px;
+}
+
 .home-guide {
   max-width: 820px;
   padding-top: 44px;
@@ -1451,6 +1558,10 @@ button {
   .ssh-widget-wrap .calculator-flow {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  .pem-mode-comparison > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (max-width: 900px) {
@@ -1505,6 +1616,14 @@ button {
   }
 
   .ssh-command-row {
+    align-items: flex-end;
+  }
+
+  .pem-windows-fix {
+    padding: 20px 16px;
+  }
+
+  .pem-windows-command {
     align-items: flex-end;
   }
 

@@ -1,12 +1,6 @@
-export type SshPermissionTarget = {
-  id: string;
-  label: string;
-  octal: string;
-  command: string;
-  note: string;
-};
+import type { PermissionFixTarget } from './permission-fix-target';
 
-export const sshPermissionTargets: SshPermissionTarget[] = [
+export const sshPermissionTargets: PermissionFixTarget[] = [
   {
     id: 'private-key',
     label: 'id_rsa / id_ed25519 (private key)',
