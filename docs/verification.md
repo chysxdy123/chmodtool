@@ -25,9 +25,21 @@
 - [x] `777` 与 other 可写权限会显示风险提示
 - [x] 所有权限勾选框都有可访问名称且可用键盘操作
 - [x] 纯函数换算模块通过全部 512 种三位权限的往返验证
+- [x] 权限引擎支持 3 位和 4 位八进制、setuid、setgid、sticky bit，并对非法输入抛出明确错误
+- [x] 可复用 PermissionWidget 支持可编辑和只读展示模式，主计算器默认视觉与交互保持不变
+- [x] SSH key 权限修复页为静态页面，六种文件/目录选项输出 600、644 或 700 的正确命令
+- [x] SSH key 权限修复页的命令、Windows icacls 和排错命令均提供复制按钮
+- [x] SSH key 权限修复页 title、description、canonical、FAQPage JSON-LD 和 sitemap 入口已生成
+- [x] SSH key 权限修复页桌面端与 390px 移动端无整页横向溢出
+- [x] SSH key 权限修复页已在 Safari 实测单行 chmod 与多行 Windows icacls 命令均可完整复制
+- [x] SSH key 权限修复页在无扩展 Chrome 的 Lighthouse 13.3.0 移动端 SEO 审计中得分 100
 - [x] Cloudflare Web Analytics 已启用并能显示 `chmodtool.com` 的访问量与页面浏览量
 - [x] 隐私政策准确说明 Cloudflare Web Analytics 和基于同意的 GA4 行为
 - [x] 首页可见 FAQ 与 FAQPage JSON-LD 使用同一份文案数据
+
+## 本地验收说明
+
+- Lighthouse 应在无扩展或无痕窗口运行。普通 Chrome 窗口中的扩展可能向页面注入图片等元素，造成与网站源码无关的 SEO 误报。本次普通窗口首次得到 92 分，无痕窗口复测为 100 分，失败项确认来自扩展注入。
 
 ## 上线后待验证
 

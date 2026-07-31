@@ -22,6 +22,8 @@
 - 实时输出数字和符号两种 chmod 命令，并支持一键复制
 - `777` 或 other 具有写权限时显示风险提示
 - 换算逻辑为不依赖 UI 的纯函数，便于抽离复用
-- 首版只支持 owner/group/other 的基础三位权限，不支持 setuid、setgid、sticky bit 等特殊位
+- 首页继续以 owner/group/other 的三位权限为默认体验；底层引擎已支持四位八进制以及 setuid、setgid、sticky bit
 - 桌面端实时转换与权限选择左右并排，`800px` 以下恢复上下布局；输入框按三位数字和十字符号模式控制宽度
 - 首页工具与常见权限入口之后提供 chmod 基础说明、FAQ 和匹配的 JSON-LD 结构化数据
+- 场景修复页采用 `/fix/<problem-slug>` 路由；第一篇覆盖 SSH 私钥权限过宽错误，纯前端生成可复制修复命令
+- 首页 `Common fixes` 由独立内容列表驱动，后续场景页统一从该入口扩展

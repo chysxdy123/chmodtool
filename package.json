@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "test": "node --experimental-strip-types --test src/lib/permission-engine.test.ts",
     "preview": "wrangler pages dev out --port 8788",
     "pages:deploy": "wrangler pages deploy out --project-name chmodtool-git",
     "lint": "eslint .",

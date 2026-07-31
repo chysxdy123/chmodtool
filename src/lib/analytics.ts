@@ -3,7 +3,12 @@ export const analyticsConsentStorageKey =
 export const openAnalyticsSettingsEvent = 'chmodtool:open-analytics-settings';
 
 export type AnalyticsConsent = 'accepted' | 'declined';
-export type CopyCommandType = 'octal' | 'symbolic';
+export type CopyCommandType =
+  | 'octal'
+  | 'symbolic'
+  | 'ssh-fix'
+  | 'windows'
+  | 'diagnostic';
 
 declare global {
   interface Window {

@@ -101,6 +101,22 @@ a {
   box-shadow: 0 14px 36px rgb(21 26 23 / 7%);
 }
 
+.permission-widget {
+  min-width: 0;
+}
+
+.display-widget .notation-field input[readonly] {
+  cursor: default;
+}
+
+.display-widget .permission-option {
+  cursor: default;
+}
+
+.display-widget .permission-option input:disabled {
+  opacity: 1;
+}
+
 .calculator-flow {
   display: grid;
   grid-template-columns: minmax(300px, 0.75fr) minmax(0, 1.25fr);
@@ -475,13 +491,51 @@ button {
   border-top: 1px solid var(--border);
 }
 
+.common-fixes {
+  display: grid;
+  gap: 18px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
 .common-heading h2,
+.common-fixes h2,
 .guide-section-heading h2,
 .guide-command h2 {
   margin: 0;
   font-size: 22px;
   line-height: 1.3;
   letter-spacing: 0;
+}
+
+.common-fix-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.common-fix-link {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  border-left: 3px solid var(--primary);
+  background: var(--surface);
+}
+
+.common-fix-link strong {
+  font-size: 15px;
+}
+
+.common-fix-link span {
+  color: var(--muted);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.common-fix-link:hover,
+.common-fix-link:focus-visible {
+  background: #edf8f0;
 }
 
 .common-permission-list {
@@ -519,11 +573,360 @@ button {
 }
 
 .common-permission-link:focus-visible,
+.common-fix-link:focus-visible,
 .guide-back-link:focus-visible,
 .guide-article a:focus-visible,
-.home-guide a:focus-visible {
+.home-guide a:focus-visible,
+.ssh-faq a:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
+}
+
+.ssh-fix-page {
+  padding: 56px 0 80px;
+}
+
+.ssh-fix-layout {
+  display: grid;
+  gap: 40px;
+}
+
+.ssh-fix-hero {
+  max-width: 840px;
+}
+
+.ssh-fix-hero h1 {
+  margin: 0;
+  font-size: 38px;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.ssh-fix-hero > p {
+  max-width: 780px;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.ssh-error-block {
+  overflow: hidden;
+  border-radius: 6px;
+  background: #17201a;
+  color: #f5f8f6;
+}
+
+.ssh-error-block > div {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #344139;
+}
+
+.ssh-error-block .section-kicker {
+  color: #76d691;
+}
+
+.ssh-error-block h2,
+.ssh-fixer h2,
+.ssh-section-heading h2,
+.ssh-explanation h2 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.ssh-error-block pre {
+  overflow-x: auto;
+  margin: 0;
+  padding: 22px 24px;
+  color: #ffffff;
+  font:
+    13px/1.6 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+}
+
+.ssh-fixer {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--background);
+  box-shadow: 0 14px 36px rgb(21 26 23 / 7%);
+}
+
+.ssh-fixer-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 0.7fr);
+  align-items: end;
+  gap: 8px 28px;
+  padding: 24px;
+}
+
+.ssh-fixer-heading .section-kicker,
+.ssh-fixer-heading h2 {
+  grid-column: 1;
+}
+
+.ssh-fixer-heading label {
+  grid-column: 2;
+  grid-row: 1;
+  color: var(--muted);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ssh-fixer-heading select {
+  grid-column: 2;
+  grid-row: 2;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 36px 8px 11px;
+  border: 1px solid #aeb9b1;
+  border-radius: 5px;
+  background: var(--background);
+  color: var(--foreground);
+  font:
+    14px ui-sans-serif,
+    system-ui,
+    sans-serif;
+}
+
+.ssh-fixer-heading select:focus-visible {
+  border-color: var(--primary);
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.ssh-fixer-output {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 16px 24px;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.ssh-recommendation {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+}
+
+.ssh-recommendation span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ssh-recommendation strong {
+  color: var(--primary-strong);
+  font:
+    32px/1.1 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+}
+
+.ssh-fixer-output > p {
+  grid-column: 2;
+  margin: -3px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.permission-description {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0;
+  padding: 0;
+  color: #3f4943;
+  font-size: 12px;
+  list-style: none;
+}
+
+.ssh-command-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  border-radius: 5px;
+  background: #17201a;
+  color: #ffffff;
+}
+
+.ssh-command-row code {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.ssh-widget-wrap {
+  border-top: 1px solid var(--border);
+}
+
+.ssh-widget-wrap .calculator-flow {
+  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);
+}
+
+.ssh-widget-wrap .notation-editor,
+.ssh-widget-wrap .permission-editor {
+  padding: 22px 24px;
+}
+
+.ssh-widget-wrap .notation-workspace {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.ssh-widget-wrap .symbolic-workspace {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.ssh-widget-wrap .permission-groups {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.ssh-widget-wrap .permission-group legend,
+.ssh-widget-wrap .permission-group > p {
+  float: none;
+  width: auto;
+}
+
+.ssh-widget-wrap .permission-group > p {
+  min-height: 36px;
+  margin: 4px 0 9px;
+  font-size: 12px;
+}
+
+.ssh-widget-wrap .permission-options {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+}
+
+.ssh-widget-wrap .permission-option {
+  min-height: 40px;
+  padding: 7px 9px;
+  font-size: 12px;
+}
+
+.ssh-explanation {
+  max-width: 800px;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.ssh-explanation p,
+.ssh-faq > p {
+  margin: 10px 0 0;
+  color: #3f4943;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.windows-fix {
+  margin-top: 32px;
+  border-block: 1px solid var(--border);
+}
+
+.windows-fix summary {
+  padding: 18px 0;
+  cursor: pointer;
+  font-weight: 750;
+}
+
+.windows-fix > div {
+  padding: 0 0 22px;
+}
+
+.windows-fix code:not(.ssh-command-row code) {
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: var(--surface);
+}
+
+.ssh-troubleshooting,
+.ssh-faq {
+  display: grid;
+  gap: 18px;
+}
+
+.diagnostic-list,
+.ssh-faq dl {
+  margin: 0;
+  border-top: 1px solid var(--border);
+}
+
+.diagnostic-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.diagnostic-row h3 {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.diagnostic-row p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ssh-faq dl > div {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.ssh-faq dt {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-weight: 750;
+  line-height: 1.5;
+}
+
+.ssh-faq dd {
+  margin: 7px 0 0;
+  color: #3f4943;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.ssh-faq > p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.ssh-faq a {
+  color: var(--primary-strong);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .home-guide {
@@ -1024,6 +1427,30 @@ button {
   .compact-tool .calculator-flow {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  .ssh-fixer-heading,
+  .ssh-fixer-output,
+  .diagnostic-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ssh-fixer-heading .section-kicker,
+  .ssh-fixer-heading h2,
+  .ssh-fixer-heading label,
+  .ssh-fixer-heading select,
+  .ssh-fixer-output > p,
+  .permission-description {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .ssh-fixer-heading label {
+    margin-top: 10px;
+  }
+
+  .ssh-widget-wrap .calculator-flow {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (max-width: 900px) {
@@ -1044,7 +1471,8 @@ button {
 
   .tool-band,
   .document-page,
-  .guide-page {
+  .guide-page,
+  .ssh-fix-page {
     padding-top: 36px;
   }
 
@@ -1054,6 +1482,52 @@ button {
 
   .guide-hero h1 {
     font-size: 31px;
+  }
+
+  .ssh-fix-hero h1 {
+    font-size: 31px;
+  }
+
+  .ssh-fix-layout {
+    gap: 32px;
+  }
+
+  .ssh-error-block > div,
+  .ssh-error-block pre,
+  .ssh-fixer-heading,
+  .ssh-fixer-output {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .ssh-error-block pre {
+    font-size: 11px;
+  }
+
+  .ssh-command-row {
+    align-items: flex-end;
+  }
+
+  .ssh-widget-wrap .notation-workspace,
+  .ssh-widget-wrap .permission-groups {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ssh-widget-wrap .symbolic-workspace {
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+
+  .ssh-widget-wrap .permission-group > p {
+    min-height: 0;
+  }
+
+  .ssh-widget-wrap .permission-options {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .common-fix-list {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .guide-layout {

@@ -5,7 +5,7 @@ import { siteConfig } from '@/lib/config';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date('2026-07-29T00:00:00.000Z');
+  const lastModified = new Date('2026-07-30T00:00:00.000Z');
 
   return [
     { url: `${siteConfig.url}/`, lastModified, priority: 1 },
@@ -15,6 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
+    {
+      url: `${siteConfig.url}/fix/ssh-key-permissions-too-open`,
+      lastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    },
     { url: `${siteConfig.url}/privacy-policy`, lastModified, priority: 0.2 },
     { url: `${siteConfig.url}/terms-of-service`, lastModified, priority: 0.2 },
   ];

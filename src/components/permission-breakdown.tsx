@@ -1,8 +1,8 @@
 import {
-  parseOctalMode,
+  octalToSymbolic,
+  parseOctal,
   permissionParties,
-  permissionsToSymbolic,
-} from '@/lib/chmod';
+} from '@/lib/permission-engine';
 
 type PermissionBreakdownProps = {
   mode: string;
@@ -11,17 +11,13 @@ type PermissionBreakdownProps = {
 const partyLabels = {
   owner: 'Owner',
   group: 'Group',
-  other: 'Other',
+  others: 'Other',
 } as const;
 
 export function PermissionBreakdown({ mode }: PermissionBreakdownProps) {
-  const permissions = parseOctalMode(mode);
-
-  if (!permissions) {
-    throw new Error(`The chmod mode "${mode}" must be valid.`);
-  }
-
-  const symbolic = permissionsToSymbolic(permissions).slice(1);
+  parseOctal(mode);
+  const symbolic = octalToSymbolic(mode);
+  const accessDigits = mode.slice(-3);
 
   return (
     <section className="permission-breakdown" aria-labelledby="breakdown-title">
@@ -38,7 +34,7 @@ export function PermissionBreakdown({ mode }: PermissionBreakdownProps) {
           return (
             <div className="breakdown-group" key={party}>
               <span>{partyLabels[party]}</span>
-              <strong>{mode[index]}</strong>
+              <strong>{accessDigits[index]}</strong>
               <code>{triplet}</code>
             </div>
           );
