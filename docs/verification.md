@@ -33,6 +33,7 @@
 - [x] SSH key 权限修复页桌面端与 390px 移动端无整页横向溢出
 - [x] SSH key 权限修复页已在 Safari 实测单行 chmod 与多行 Windows icacls 命令均可完整复制
 - [x] SSH key 权限修复页在无扩展 Chrome 的 Lighthouse 13.3.0 移动端 SEO 审计中得分 100
+- [x] 提交 `232d8d3` 已部署到正式域名；新页面、首页入口、sitemap、canonical、FAQPage、700 模式切换和 390px 布局均在生产环境验证通过，控制台无错误
 - [x] Cloudflare Web Analytics 已启用并能显示 `chmodtool.com` 的访问量与页面浏览量
 - [x] 隐私政策准确说明 Cloudflare Web Analytics 和基于同意的 GA4 行为
 - [x] 首页可见 FAQ 与 FAQPage JSON-LD 使用同一份文案数据
