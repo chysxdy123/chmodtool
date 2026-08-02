@@ -122,6 +122,7 @@
     "copyError": "Copy failed. Select the command and copy it manually."
   },
   "footer": {
+    "about": "About",
     "privacy": "Privacy",
     "terms": "Terms"
   }

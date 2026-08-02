@@ -13,7 +13,8 @@ export function SiteFooter({
     <footer className="site-footer">
       <div className="shell footer-inner">
         <span>© {new Date().getFullYear()} chmodtool.com</span>
-        <nav aria-label="Legal">
+        <nav aria-label="Site information">
+          <Link href="/about">{messages.footer.about}</Link>
           <Link href="/privacy-policy">{messages.footer.privacy}</Link>
           <Link href="/terms-of-service">{messages.footer.terms}</Link>
           {showAnalyticsSettings && (
