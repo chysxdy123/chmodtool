@@ -49,6 +49,22 @@ export default function AboutPage() {
           can also read the <Link href="/privacy-policy">Privacy Policy</Link>{' '}
           and <Link href="/terms-of-service">Terms of Service</Link>.
         </p>
+
+        <h2>Featured on</h2>
+        <a
+          href="https://www.producthunt.com/products/chmodtool-com?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-chmodtool-com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt="chmodtool.com - Stop googling what chmod 755 means | Product Hunt"
+            width="250"
+            height="54"
+            loading="lazy"
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1215233&theme=light&t=1785986566695"
+          />
+        </a>
       </article>
     </main>
   );
